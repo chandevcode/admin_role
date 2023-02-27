@@ -1,4 +1,22 @@
 <div>
   <h1 class="font-bold text-4xl">Pages#home</h1>
   <p>Find me in app/views/pages/home.html.erb</p>
+
+  <% if current_user %>
+    <p>Hello <%= current_user.email %>!
+    <br />
+    Account Type is 
+    <strong>
+
+      <%= current_user.role %></strong></p> 
+    <p> Youre Logged In to Dashboard</p>
+    <br />
+    <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+
+  <% else %>
+    <p>Youre not signed in.</p>
+    <%= link_to "Sign Up", new_user_registration_path %>
+    <br />
+    <%= link_to "Sign in", new_user_session_path %>
+  <% end %>
 </div>
